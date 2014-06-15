@@ -1,0 +1,20 @@
+{
+    "title": "Formule sanguine",
+    "total_count" : 200,
+    "concentration" : 0,
+    "author": "sacha schutz",
+
+    "elements": [
+
+        {
+         "name":"Lymphocytes",
+         "default_count" : 0,
+         "color":"red",
+         "add_shortcut" : "K",
+         "rem_shortcut" : "CTRL+K"
+        }
+
+    ]
+
+
+}

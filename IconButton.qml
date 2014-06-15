@@ -2,19 +2,20 @@ import QtQuick 2.0
 
 Item {
     property alias source :img.source
+    property alias title : title.text
     width: 50
     height: 50
     opacity:area.pressed ? 0.4 : 1
 
     Image {
         id:img
-        width: 20
-        height: 20
+
         anchors.verticalCenterOffset: -5
         anchors.centerIn: parent
 
     }
     Text {
+        id:title
         text:"open"
         anchors.bottomMargin: 3
         anchors.horizontalCenter: parent.horizontalCenter

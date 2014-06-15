@@ -14,10 +14,36 @@ ApplicationWindow {
     property int totalCount : totalCount.text
     property int totalCells : totalCells.text
 
+    Component.onCompleted: {
+
+        var txtFile = Qt.resolvedUrl("standard.json")
+        var req = new XMLHttpRequest();
+        req.open("GET", txtFile, true);
+        req.send(null);
+        req.onreadystatechange = function()
+        {
+            if (req.readyState == 4)
+            {
+                var data = JSON.parse(req.responseText)
+
+                console.debug(data["title"])
+            }
+        }
+
+
+    }
+
+
     Rectangle{
         id:main
         anchors.fill: parent
         color: "white"
+
+        focus: true
+        Keys.onPressed: {
+
+
+        }
 
         Column {
             id:header
@@ -45,20 +71,24 @@ ApplicationWindow {
                     anchors.fill: parent
                     spacing: 5
                     IconButton{
-                        source: "icons/folder99.png"
+                        source: "icons/up21.png"
                         anchors.verticalCenter: parent.verticalCenter
+                        title: "open"
                     }
                     IconButton{
-                        source: "icons/folder99.png"
+                        source: "icons/down14.png"
                         anchors.verticalCenter: parent.verticalCenter
+                        title: "save"
                     }
                     IconButton{
-                        source: "icons/folder99.png"
+                        source: "icons/play43.png"
                         anchors.verticalCenter: parent.verticalCenter
+                        title:"start"
                     }
                     IconButton{
-                        source: "icons/folder99.png"
+                        source: "icons/two123.png"
                         anchors.verticalCenter: parent.verticalCenter
+                        title:"reset"
                     }
 
 
