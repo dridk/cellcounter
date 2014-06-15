@@ -1,7 +1,7 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Window 2.0
-
+import "cellcounter.js" as JS
 ApplicationWindow {
     id:root
     title: qsTr("Hello World")
@@ -11,36 +11,48 @@ ApplicationWindow {
     FontLoader { id: latoFont; source: "fonts/Lato_Black.ttf" }
     FontLoader { id: franchiseFont; source: "fonts/Franchise_Bold.ttf"}
 
-    property int totalCount : totalCount.text
-    property int totalCells : totalCells.text
+    property int maxCount : 200
+    property int currentCount : 0
+    property double concentration : 1.96
+
+
+    ListModel {
+        id:model
+    }
 
     Component.onCompleted: {
 
-        var txtFile = Qt.resolvedUrl("standard.json")
-        var req = new XMLHttpRequest();
-        req.open("GET", txtFile, true);
-        req.send(null);
-        req.onreadystatechange = function()
-        {
-            if (req.readyState == 4)
-            {
-                var data = JSON.parse(req.responseText)
-
-                console.debug(data["title"])
-            }
-        }
+        JS.loadJson("standard.json")
 
 
     }
 
 
-    Rectangle{
+    Item{
         id:main
         anchors.fill: parent
-        color: "white"
-
+        z:1
         focus: true
         Keys.onPressed: {
+
+
+            if (event.text in JS.keymaps)
+            {
+                // Peut etre que faut inversé le dictionnaire, car dangereux ...
+                var index = JS.keymaps[event.text]
+                var c = model.get(index).count
+
+                if ( currentCount > maxCount || currentCount <0)
+                    return;
+
+                var add = 1
+
+                model.set(index,{count:c + add})
+                currentCount += add
+
+
+            }
+
 
 
         }
@@ -107,8 +119,7 @@ ApplicationWindow {
                             height: parent.height
 
                             TextInput {
-                                id: totalCount
-                                text: "200"
+                                text: root.maxCount
                                 anchors.centerIn: parent
                                 font.family: latoFont.name
                                 font.pixelSize: 30
@@ -121,8 +132,7 @@ ApplicationWindow {
                             width: parent.width/ 2
                             height: parent.height
                             TextInput {
-                                id:totalCells
-                                text: "1.65"
+                                text: root.concentration
                                 anchors.centerIn: parent
                                 font.family: latoFont.name
                                 font.pixelSize: 30
@@ -139,19 +149,71 @@ ApplicationWindow {
 
                 }
             }
+
+            Rectangle {
+                id:progressBase
+                width: parent.width
+                height: 4
+                color: "#d3d7cf"
+
+                Rectangle {
+                    id:progress
+                    width: parent.width * (currentCount/maxCount)
+                    height: 4
+                    color: "#2d3945"
+
+                }
+                Rectangle {
+                    anchors.left: progress.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: 26
+                    height: 13
+                    color: "#2d3945"
+                    radius: 5
+
+                    Text {
+                        anchors.centerIn: parent
+                        text:currentCount
+                        font.family: latoFont.name
+                        color: "white"
+                        font.pixelSize: 10
+                    }
+
+
+
+                }
+            }
+
+
+
         }
 
         ScrollView {
             anchors.top : header.bottom
             anchors.bottom: parent.bottom
             width: parent.width
+            z:-1
             ListView {
 
                 clip: true
-                model : 100
+                model : model
+                property string test : "saha"
 
                 delegate: ItemDelegate {
+                    title: ListView.view.model.get(index).name
+                    mainColor : ListView.view.model.get(index).color
+                    count:  ListView.view.model.get(index).count
+                    key : ListView.view.model.get(index).shortcut
 
+                    onClicked:  {
+
+                        root.currentCount ++
+                        var c = ListView.view.model.get(index).count + 1
+
+
+                        ListView.view.model.setProperty(index,"count", c)
+
+                    }
                 }
             }
         }

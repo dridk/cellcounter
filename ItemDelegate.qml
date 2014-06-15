@@ -4,8 +4,13 @@ Rectangle {
     id:item
     width: parent.width
     height: 50
-    property string color : area.pressed ? "white" : "#008647"
+    property string mainColor
+    property string color : mainColor
     property int count:0
+    property alias title : title.text
+    property alias key :keyText.text
+
+    signal clicked(var event)
 
     Rectangle {
         id:border
@@ -19,12 +24,12 @@ Rectangle {
         anchors.left: parent.left
        width: area.pressed ? parent.width : 0
        height: parent.height
-       color: "#008647"
+       color: mainColor
 
        Behavior on width {
            NumberAnimation{
-               easing.type: Easing.OutCirc
-               duration : 50
+               easing.type: Easing.OutExpo
+               duration : 500
 
            }
        }
@@ -46,8 +51,8 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
 
             Text {
+                id:keyText
                 anchors.centerIn: parent
-                text:"A"
                 color: !area.pressed ? "white": "#2d3945"
                 font.family: latoFont.name
 
@@ -56,6 +61,7 @@ Rectangle {
 
 
         Text {
+            id:title
             anchors.verticalCenter: parent.verticalCenter
             text:"LYMPHOCYTE"
             font.pixelSize: 15
@@ -81,8 +87,8 @@ Rectangle {
 
                 Text{
                     anchors.centerIn:parent
-                    text:count
-                    color: item.color
+                    text:item.count
+                    color: area.pressed ? "white": mainColor
                     font.family: latoFont.name
                     font.pixelSize: 35
 
@@ -110,8 +116,8 @@ Rectangle {
                     spacing: 5
 
                     Text {
-                        text:"12 giga/L"
-                        color: item.color
+                        text: Math.floor(item.count / root.maxCount * root.concentration) + "g/L"
+                        color: area.pressed ? "white": mainColor
                         font.family: latoFont.name
                         font.pixelSize: 10
                         Behavior on color {
@@ -124,8 +130,8 @@ Rectangle {
                     }
 
                     Text {
-                        text: Math.floor(item.count / root.totalCount * 100) + "%"
-                        color: item.color
+                        text: Math.floor(item.count / root.maxCount * 100) + "%"
+                        color: area.pressed ? "white": mainColor
                         font.family: latoFont.name
                         font.pixelSize: 10
                         Behavior on color {
@@ -168,12 +174,7 @@ Rectangle {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-        onClicked: {
-         if (mouse.button == Qt.LeftButton)
-            item.count += 1
-         if (mouse.button == Qt.RightButton)
-            item.count -= 1
-        }
+        onClicked:item.clicked(mouse)
     }
 
 
