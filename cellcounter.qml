@@ -29,8 +29,11 @@ ApplicationWindow {
 
     Component.onCompleted: {
 
-        JS.loadJson("standard.json")
-        console.debug(Qt.resolvedUrl(""))
+        var a = "file://"+tools.applicationPath() + "/standard.json"
+        console.debug(a)
+
+        JS.loadJson(a)
+
 
 
     }
@@ -352,12 +355,12 @@ ApplicationWindow {
 
     SoundEffect {
            id: validSound
-           source: "file:///./click.wav"
+           source: "file://"+tools.applicationPath() + "/sfx/click.wav"
        }
 
     SoundEffect {
         id:errorSound
-        source: "file:////deny.wav"
+               source: "file://"+tools.applicationPath() + "/sfx/deny.wav"
 
     }
 

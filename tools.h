@@ -15,6 +15,8 @@ public:
                               int concentration,
                               QAbstractListModel * model);
 
+    Q_INVOKABLE QString applicationPath();
+
 
 };
 

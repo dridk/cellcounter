@@ -16,13 +16,10 @@ include(deployment.pri)
 HEADERS += \
     tools.h
 
-OTHER_FILES += \
-    sfx/click.wav \
-    sfx/deny.wav
-
-install_it.path = $$OUT_PWD
-install_it.files = sfx/* standard.json
 
 
-INSTALLS += \
-    install_it
+#install_it.path = $$OUT_PWD
+#install_it.files = sfx/*
+
+
+#INSTALLS += install_it

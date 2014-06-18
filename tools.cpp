@@ -3,6 +3,7 @@
 #include <QFileDialog>
 #include <QJsonObject>
 #include <QJsonArray>
+#include <QApplication>
 Tools::Tools(QObject *parent) :
     QObject(parent)
 {
@@ -18,6 +19,14 @@ void Tools::saveJson(const QString &title,
 
 
 
+
+
+}
+
+QString Tools::applicationPath()
+{
+
+        return QApplication::applicationDirPath();
 
 
 }

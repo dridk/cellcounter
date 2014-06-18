@@ -9,35 +9,35 @@
         {
          "name":"Polynucléaire neutrophile",
          "count" : 0,
-         "color":"#008647",
+         "color":"#ff6b33",
          "shortcut" : "w"
         },
 
         {
          "name":"Polynucléaire eosinophile",
          "count" : 0,
-         "color":"#008647",
+         "color":"#FFCA63",
          "shortcut" : "x"
         },
 
         {
          "name":"Polynucléaire basophile",
          "count" : 0,
-         "color":"#008647",
+         "color":"#C84FCB",
          "shortcut" : "c"
         },
 
         {
          "name":"Lymphocyte",
          "count" : 0,
-         "color":"#6c0086",
+         "color":"#905BF1",
          "shortcut" : "v"
         },
 
         {
          "name":"Monocyte",
          "count" : 0,
-         "color":"#fa8c42",
+         "color":"#01C7A6",
          "shortcut" : "b"
         }
 
