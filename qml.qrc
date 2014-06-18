@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>cellcounter.js</file>
+        <file>cellcounter.qml</file>
+        <file>IconButton.qml</file>
+        <file>IconText.qml</file>
+        <file>ItemDelegate.qml</file>
+        <file>fonts/Franchise_Bold.ttf</file>
+        <file>fonts/Lato_Black.ttf</file>
+        <file>icons/add11.png</file>
+        <file>icons/diskette1.png</file>
+        <file>icons/down14.png</file>
+        <file>icons/female206.png</file>
+        <file>icons/folder99.png</file>
+        <file>icons/github.png</file>
+        <file>icons/keyboard12.png</file>
+        <file>icons/male209.png</file>
+        <file>icons/play43.png</file>
+        <file>icons/square64.png</file>
+        <file>icons/twitter.png</file>
+        <file>icons/two123.png</file>
+        <file>icons/up21.png</file>
+    </qresource>
+</RCC>
