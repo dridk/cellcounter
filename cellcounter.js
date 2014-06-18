@@ -15,8 +15,12 @@ function loadJson(filename) {
         {
             var data = JSON.parse(req.responseText)
 
+            reset()
             model.clear()
+
             root.maxCount = data["max_count"]
+            root.title = data["title"]
+            root.concentration = data["concentration"]
             for ( var i=0; i<data["elements"].length; i++)
             {
                 model.append(data["elements"][i])

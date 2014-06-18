@@ -1,42 +1,42 @@
 {
     "title": "Formule sanguine",
     "max_count" : 200,
-    "concentration" : 0,
+    "concentration" : 1.24,
     "author": "sacha schutz",
 
     "elements": [
 
         {
          "name":"Polynucléaire neutrophile",
-         "count" : 12,
+         "count" : 0,
          "color":"#008647",
          "shortcut" : "w"
         },
 
         {
          "name":"Polynucléaire eosinophile",
-         "count" : 13,
+         "count" : 0,
          "color":"#008647",
          "shortcut" : "x"
         },
 
         {
          "name":"Polynucléaire basophile",
-         "count" : 15,
+         "count" : 0,
          "color":"#008647",
          "shortcut" : "c"
         },
 
         {
          "name":"Lymphocyte",
-         "count" : 17,
+         "count" : 0,
          "color":"#6c0086",
          "shortcut" : "v"
         },
 
         {
          "name":"Monocyte",
-         "count" : 12,
+         "count" : 0,
          "color":"#fa8c42",
          "shortcut" : "b"
         }

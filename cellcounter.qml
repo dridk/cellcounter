@@ -6,12 +6,13 @@ import QtQuick.Dialogs 1.1
 import "cellcounter.js" as JS
 ApplicationWindow {
     id:root
-    title: qsTr("Hello World")
+    title: qsTr("Cell Counter")
     width: 500
     height: 600
     color : "white"
     minimumWidth: 400
     minimumHeight: 400
+
     visible: true
     FontLoader { id: latoFont; source: "fonts/Lato_Black.ttf" }
     FontLoader { id: franchiseFont; source: "fonts/Franchise_Bold.ttf"}
@@ -132,12 +133,13 @@ ApplicationWindow {
                         enabled: !root.started
                         onClicked: fileDialog.open()
                     }
-                    IconButton{
-                        source: "icons/down14.png"
-                        anchors.verticalCenter: parent.verticalCenter
-                        title: "save"
-                        enabled: !root.started
-                    }
+//                    IconButton{
+//                        source: "icons/down14.png"
+//                        anchors.verticalCenter: parent.verticalCenter
+//                        title: "save"
+//                        enabled: !root.started
+//                        onClicked: tools.saveJson(model)
+//                    }
                     IconButton{
                         source: started ? "icons/square64.png" : "icons/play43.png"
                         anchors.verticalCenter: parent.verticalCenter
