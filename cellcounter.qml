@@ -2,6 +2,7 @@ import QtQuick 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Window 2.0
 import QtQuick.Dialogs 1.1
+import QtMultimedia 5.0
 
 import "cellcounter.js" as JS
 ApplicationWindow {
@@ -26,12 +27,13 @@ ApplicationWindow {
         id:model
     }
 
-//    Component.onCompleted: {
+    Component.onCompleted: {
 
-//        JS.loadJson("standard.json")
+        JS.loadJson("standard.json")
+        console.debug(Qt.resolvedUrl(""))
 
 
-//    }
+    }
 
 
     Item{
@@ -39,7 +41,14 @@ ApplicationWindow {
         anchors.fill: parent
         z:1
         focus: true
+
+        Keys.onEnterPressed: {
+            started = !started
+        }
+
         Keys.onPressed: {
+
+
 
             if (!event.isAutoRepeat && root.started)
             {
@@ -341,6 +350,16 @@ ApplicationWindow {
         }
     }
 
+    SoundEffect {
+           id: validSound
+           source: "file:///./click.wav"
+       }
+
+    SoundEffect {
+        id:errorSound
+        source: "file:////deny.wav"
+
+    }
 
 
 }

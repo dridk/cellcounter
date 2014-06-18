@@ -6,6 +6,7 @@ var keymaps = {};
 function loadJson(filename) {
 
     var txtFile = Qt.resolvedUrl(filename)
+    console.debug(txtFile)
     var req = new XMLHttpRequest();
     req.open("GET", txtFile, true);
     req.send(null);
@@ -39,11 +40,15 @@ function loadJson(filename) {
 function increase(index){
     console.debug("increase")
     var c = model.get(index).count
-    if ( root.currentCount >= root.maxCount || root.currentCount <0)
+    if ( root.currentCount >= root.maxCount || root.currentCount <0){
+        errorSound.play()
         return;
+
+    }
 
     model.set(index,{count:c + 1})
     currentCount += 1
+    validSound.play()
 
 }
 
@@ -53,11 +58,14 @@ function increase(index){
 function decrease(index){
     console.debug("decrease")
     var c = model.get(index).count
-    if ( root.currentCount >= root.maxCount || root.currentCount <0)
+    if ( root.currentCount > root.maxCount || root.currentCount <=0){
+        errorSound.play()
         return;
 
+    }
     model.set(index,{count:c - 1})
     currentCount -= 1
+    validSound.play()
 
 }
 //========================================================================

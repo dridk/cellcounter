@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QDir>
 #include "tools.h"
 int main(int argc, char *argv[])
 {
@@ -13,6 +14,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("tools",&tools);
 
     engine.load(QUrl(QStringLiteral("qrc:///cellcounter.qml")));
+
 
 
 

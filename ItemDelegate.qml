@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtMultimedia 5.0
 
 Rectangle {
     id:item
@@ -11,6 +12,7 @@ Rectangle {
     property alias key :keyText.text
 
     property bool activate : false
+
 
 
 
@@ -188,6 +190,8 @@ Rectangle {
         onReleased: item.released(mouse)
 
     }
+
+
 
 
 }
