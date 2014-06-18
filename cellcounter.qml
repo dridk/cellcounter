@@ -1,12 +1,17 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.1
 import QtQuick.Window 2.0
+import QtQuick.Dialogs 1.1
+
 import "cellcounter.js" as JS
 ApplicationWindow {
     id:root
     title: qsTr("Hello World")
     width: 500
     height: 600
+    color : "white"
+    minimumWidth: 400
+    minimumHeight: 400
 
     FontLoader { id: latoFont; source: "fonts/Lato_Black.ttf" }
     FontLoader { id: franchiseFont; source: "fonts/Franchise_Bold.ttf"}
@@ -14,7 +19,7 @@ ApplicationWindow {
     property int maxCount : 200
     property int currentCount : 0
     property double concentration : 1.96
-
+    property bool started : false
 
     ListModel {
         id:model
@@ -35,7 +40,7 @@ ApplicationWindow {
         focus: true
         Keys.onPressed: {
 
-            if (!event.isAutoRepeat)
+            if (!event.isAutoRepeat && root.started)
             {
 
                 var lowerText = event.text.toLowerCase()
@@ -43,7 +48,8 @@ ApplicationWindow {
                 if (  lowerText in JS.keymaps ){
 
                     var index = JS.keymaps[event.text.toLowerCase()]
-                    model.get(0).activated = true
+
+                    model.get(index).activated = true
 
                     if (event.text === lowerText ) // alors c'est la minuscule
                         JS.increase(index)
@@ -61,7 +67,13 @@ ApplicationWindow {
 
         Keys.onReleased : {
 
-            model.get(0).activated = false
+
+            for (var i=0; i<model.count; ++i)
+            {
+                model.get(i).activated = false
+
+
+            }
 
 
 
@@ -84,6 +96,25 @@ ApplicationWindow {
                     color: "white"
                     font.pixelSize: 26
                 }
+
+                IconText {
+                    title: "github"
+                    source: "icons/github.png"
+                    url:"https://github.com/dridk/cellcounter"
+
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.left: parent.left
+                    anchors.leftMargin : 20
+                }
+
+                IconText {
+                    title: "twitter"
+                    source: "icons/twitter.png"
+                    url:"https://twitter.com/dridk"
+                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.right: parent.right
+                    anchors.rightMargin: 20
+                }
             }
 
             Rectangle {
@@ -98,21 +129,28 @@ ApplicationWindow {
                         source: "icons/up21.png"
                         anchors.verticalCenter: parent.verticalCenter
                         title: "open"
+                        enabled: !root.started
+                        onClicked: fileDialog.open()
                     }
                     IconButton{
                         source: "icons/down14.png"
                         anchors.verticalCenter: parent.verticalCenter
                         title: "save"
+                        enabled: !root.started
                     }
                     IconButton{
-                        source: "icons/play43.png"
+                        source: started ? "icons/square64.png" : "icons/play43.png"
                         anchors.verticalCenter: parent.verticalCenter
-                        title:"start"
+                        title:started ?"Stop":"Start"
+                        onClicked: JS.start()
                     }
                     IconButton{
                         source: "icons/two123.png"
                         anchors.verticalCenter: parent.verticalCenter
                         title:"reset"
+                        onClicked: JS.reset()
+                        enabled: !root.started
+
                     }
 
 
@@ -124,7 +162,9 @@ ApplicationWindow {
                     width: 180
 
                     Row {
+                        enabled: !started
                         anchors.fill: parent
+                        opacity: enabled  ? 1 : 0.4
 
                         Item {
                             width: parent.width / 2
@@ -136,6 +176,14 @@ ApplicationWindow {
                                 font.family: latoFont.name
                                 font.pixelSize: 30
                                 color: "#2d3945"
+                                onAccepted: {
+                                    root.maxCount = text
+                                    main.focus = true
+                                }
+                                onFocusChanged:  {
+                                    root.maxCount = text
+                                }
+
 
                             }
                         }
@@ -149,6 +197,14 @@ ApplicationWindow {
                                 font.family: latoFont.name
                                 font.pixelSize: 30
                                 color: "#2d3945"
+
+                                onAccepted: {
+                                    root.concentration = text
+                                    main.focus = true
+                                }
+                                onFocusChanged:  {
+                                    root.concentration = text
+                                }
 
                             }
                         }
@@ -170,14 +226,24 @@ ApplicationWindow {
 
                 Rectangle {
                     id:progress
-                    width: parent.width * (currentCount/maxCount)
+                    width: (parent.width - 26) * (currentCount/maxCount)
                     height: 4
                     color: "#2d3945"
+
+                    Behavior on width {
+                        NumberAnimation {
+                            easing.type: Easing.OutBack
+                            duration : 100
+
+
+                        }
+                    }
 
                 }
                 Rectangle {
                     anchors.left: progress.right
                     anchors.verticalCenter: parent.verticalCenter
+
                     width: 26
                     height: 13
                     color: "#2d3945"
@@ -204,9 +270,13 @@ ApplicationWindow {
             anchors.top : header.bottom
             anchors.bottom: parent.bottom
             width: parent.width
+            enabled: started
             z:-1
-            ListView {
+            opacity: enabled ? 1 : 0.4
 
+
+            ListView {
+                enabled: root.started
                 clip: true
                 model : model
                 property string test : "saha"
@@ -236,10 +306,37 @@ ApplicationWindow {
             }
         }
 
+    }
 
 
 
+    Rectangle {
+        anchors.bottom: parent.bottom
+        width: parent.width
+        height: 15
+        color: "#2d3945"
 
+        Text {
+            anchors.centerIn: parent
+            text:"labsquare - licence MIT"
+            color: "white"
+            font.family: latoFont.name
+        }
+
+    }
+
+    FileDialog {
+        id: fileDialog
+        title: "Please choose a file"
+        nameFilters: [ "Json file (*.json)" ]
+
+
+        onAccepted: {
+            JS.loadJson(fileDialog.fileUrls[0])
+        }
+        onRejected: {
+            console.log("Canceled")
+        }
     }
 
 

@@ -33,6 +33,7 @@ Rectangle {
        height: parent.height
        color: mainColor
 
+
        Behavior on width {
            NumberAnimation{
                easing.type: Easing.OutExpo
@@ -101,7 +102,7 @@ Rectangle {
 
                     Behavior on color {
                         ColorAnimation {
-                            duration: 200
+                            duration: 400
                             easing.type: Easing.InExpo
 
                         }
@@ -125,14 +126,14 @@ Rectangle {
                     spacing: 5
 
                     Text {
-                        text: Math.floor(item.count / root.maxCount * root.concentration) + "g/L"
+                        text: Math.floor(item.count / root.maxCount * root.concentration*100)/100 + "g/L"
                         color: item.activate ? "white": mainColor
                         font.family: latoFont.name
                         font.pixelSize: 10
                         Behavior on color {
                             ColorAnimation {
-                                duration: 200
-                                easing.type: Easing.InExpo
+                                easing.type: Easing.OutExpo
+                                duration: 400
 
                             }
                         }
@@ -145,8 +146,8 @@ Rectangle {
                         font.pixelSize: 10
                         Behavior on color {
                             ColorAnimation {
-                                duration: 200
-                                easing.type: Easing.InExpo
+                                duration: 400
+                                easing.type: Easing.OutExpo
 
                             }
                         }

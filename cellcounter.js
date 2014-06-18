@@ -14,6 +14,8 @@ function loadJson(filename) {
         if (req.readyState == 4)
         {
             var data = JSON.parse(req.responseText)
+
+            model.clear()
             root.maxCount = data["max_count"]
             for ( var i=0; i<data["elements"].length; i++)
             {
@@ -33,7 +35,7 @@ function loadJson(filename) {
 function increase(index){
     console.debug("increase")
     var c = model.get(index).count
-    if ( root.currentCount > root.maxCount || root.currentCount <0)
+    if ( root.currentCount >= root.maxCount || root.currentCount <0)
         return;
 
     model.set(index,{count:c + 1})
@@ -47,13 +49,30 @@ function increase(index){
 function decrease(index){
     console.debug("decrease")
     var c = model.get(index).count
-    if ( root.currentCount > root.maxCount || root.currentCount <0)
+    if ( root.currentCount >= root.maxCount || root.currentCount <0)
         return;
 
     model.set(index,{count:c - 1})
     currentCount -= 1
 
 }
+//========================================================================
 
+function reset()
+{
+    for (var i=0; i<model.count; ++i)
+    {
+        model.get(i).count = 0
 
+    }
+    root.currentCount = 0
+}
+//========================================================================
+
+function start()
+{
+    root.started = !root.started
+    main.focus = true
+
+}
 

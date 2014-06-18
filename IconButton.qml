@@ -5,7 +5,9 @@ Item {
     property alias title : title.text
     width: 50
     height: 50
-    opacity:area.pressed ? 0.4 : 1
+    opacity: enabled ? (area.pressed ? 0.4 : 1) : 0.4
+
+    signal clicked()
 
     Image {
         id:img
@@ -24,6 +26,7 @@ Item {
     MouseArea {
         id:area
         anchors.fill: parent
+        onClicked: parent.clicked()
     }
 
 
