@@ -35,27 +35,39 @@ ApplicationWindow {
         focus: true
         Keys.onPressed: {
 
-
-            if (event.text in JS.keymaps)
+            if (!event.isAutoRepeat)
             {
-                // Peut etre que faut inversé le dictionnaire, car dangereux ...
-                var index = JS.keymaps[event.text]
-                var c = model.get(index).count
 
-                if ( currentCount > maxCount || currentCount <0)
-                    return;
+                var lowerText = event.text.toLowerCase()
 
-                var add = 1
+                if (  lowerText in JS.keymaps ){
 
-                model.set(index,{count:c + add})
-                currentCount += add
+                    var index = JS.keymaps[event.text.toLowerCase()]
+                    model.get(0).activated = true
+
+                    if (event.text === lowerText ) // alors c'est la minuscule
+                        JS.increase(index)
+
+                    else
+                        JS.decrease(index)
+
+                }
 
 
             }
 
 
+        }
+
+        Keys.onReleased : {
+
+            model.get(0).activated = false
+
+
 
         }
+
+
 
         Column {
             id:header
@@ -204,14 +216,20 @@ ApplicationWindow {
                     mainColor : ListView.view.model.get(index).color
                     count:  ListView.view.model.get(index).count
                     key : ListView.view.model.get(index).shortcut
+                    activate: ListView.view.model.get(index).activated
 
-                    onClicked:  {
+                    onPressed:  {
 
-                        root.currentCount ++
-                        var c = ListView.view.model.get(index).count + 1
+                        ListView.view.model.get(index).activated = true
+                        if (event.button === Qt.LeftButton)
+                            JS.increase(index)
+                        if (event.button === Qt.RightButton)
+                            JS.decrease(index)
 
+                    }
 
-                        ListView.view.model.setProperty(index,"count", c)
+                    onReleased: {
+                        ListView.view.model.get(index).activated = false
 
                     }
                 }

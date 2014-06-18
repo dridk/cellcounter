@@ -10,7 +10,14 @@ Rectangle {
     property alias title : title.text
     property alias key :keyText.text
 
-    signal clicked(var event)
+    property bool activate : false
+
+
+
+    signal pressed(var event)
+    signal released(var event)
+
+
 
     Rectangle {
         id:border
@@ -22,7 +29,7 @@ Rectangle {
 
     Rectangle {
         anchors.left: parent.left
-       width: area.pressed ? parent.width : 0
+       width: item.activate ? item.width : 0
        height: parent.height
        color: mainColor
 
@@ -46,14 +53,14 @@ Rectangle {
             id:keybox
             width: 25
             height: 25
-            color: area.pressed ? "white": "#2d3945"
+            color: item.activate? "white": "#2d3945"
             radius: 4
             anchors.verticalCenter: parent.verticalCenter
 
             Text {
                 id:keyText
                 anchors.centerIn: parent
-                color: !area.pressed ? "white": "#2d3945"
+                color: !item.activate? "white": "#2d3945"
                 font.family: latoFont.name
 
             }
@@ -67,7 +74,7 @@ Rectangle {
             font.pixelSize: 15
             font.bold: true
             font.family: latoFont.name
-            color: area.pressed ? "white": "#2d3945"
+            color: item.activate ? "white": "#2d3945"
         }
 
     }
@@ -88,13 +95,15 @@ Rectangle {
                 Text{
                     anchors.centerIn:parent
                     text:item.count
-                    color: area.pressed ? "white": mainColor
+                    color:item.activate ? "white": mainColor
                     font.family: latoFont.name
                     font.pixelSize: 35
 
                     Behavior on color {
                         ColorAnimation {
                             duration: 200
+                            easing.type: Easing.InExpo
+
                         }
                     }
 
@@ -117,13 +126,13 @@ Rectangle {
 
                     Text {
                         text: Math.floor(item.count / root.maxCount * root.concentration) + "g/L"
-                        color: area.pressed ? "white": mainColor
+                        color: item.activate ? "white": mainColor
                         font.family: latoFont.name
                         font.pixelSize: 10
                         Behavior on color {
                             ColorAnimation {
-                                easing.type: Easing.OutExpo
                                 duration: 200
+                                easing.type: Easing.InExpo
 
                             }
                         }
@@ -131,13 +140,13 @@ Rectangle {
 
                     Text {
                         text: Math.floor(item.count / root.maxCount * 100) + "%"
-                        color: area.pressed ? "white": mainColor
+                        color: item.activate ? "white": mainColor
                         font.family: latoFont.name
                         font.pixelSize: 10
                         Behavior on color {
                             ColorAnimation {
                                 duration: 200
-                                easing.type: Easing.OutExpo
+                                easing.type: Easing.InExpo
 
                             }
                         }
@@ -174,7 +183,9 @@ Rectangle {
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton
 
-        onClicked:item.clicked(mouse)
+        onPressed: item.pressed(mouse)
+        onReleased: item.released(mouse)
+
     }
 
 
