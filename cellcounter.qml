@@ -12,7 +12,7 @@ ApplicationWindow {
     color : "white"
     minimumWidth: 400
     minimumHeight: 400
-
+    visible: true
     FontLoader { id: latoFont; source: "fonts/Lato_Black.ttf" }
     FontLoader { id: franchiseFont; source: "fonts/Franchise_Bold.ttf"}
 
@@ -25,12 +25,12 @@ ApplicationWindow {
         id:model
     }
 
-    Component.onCompleted: {
+//    Component.onCompleted: {
 
-        JS.loadJson("standard.json")
+//        JS.loadJson("standard.json")
 
 
-    }
+//    }
 
 
     Item{
