@@ -13,8 +13,7 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-HEADERS += \
-    tools.h
+HEADERS += tools.h
 
 
 
