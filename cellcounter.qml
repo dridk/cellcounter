@@ -43,7 +43,7 @@ ApplicationWindow {
         z:1
         focus: true
 
-        Keys.onEnterPressed: {
+        Keys.onReturnPressed : {
             started = !started
         }
 
@@ -290,8 +290,9 @@ ApplicationWindow {
             ListView {
                 enabled: root.started
                 clip: true
+                highlightFollowsCurrentItem: true
                 model : model
-                property string test : "saha"
+
 
                 delegate: ItemDelegate {
                     title: ListView.view.model.get(index).name

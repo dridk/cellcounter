@@ -128,7 +128,7 @@ Rectangle {
                     spacing: 5
 
                     Text {
-                        text: Math.floor(item.count / root.maxCount * root.concentration*100)/100 + "g/L"
+                        text: Math.floor(item.count / root.maxCount * root.concentration*100)/100 + " /mm3"
                         color: item.activate ? "white": mainColor
                         font.family: latoFont.name
                         font.pixelSize: 10
