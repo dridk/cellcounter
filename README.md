@@ -4,6 +4,9 @@ cellcounter
 Cute Software to manual count blood cells. This application can be use in biology laboratories, particulary in hematolgy cytology. However this application is designed to be use for any counting task. Just edit a json file and open it. 
 
 
+
+![cellcounter](https://github.com/dridk/cellcounter/blob/master/screenshot.png "Screenshot")
+
 #Installation 
 
 You can install directly the binary version of cellcounter avaible for windows and Mac. You can also compile the code. [Download Qt](http://qt-project.org/downloads) according to your platform. Open the **cell.pro** from QtCreator and compile it by clicking on the green arrow. That's all 
@@ -58,17 +61,17 @@ Cellcounter use a json file to descripe what you want to count. Check the defini
     ]
     }
 
-*title*         : title of the template counting
-*max_count*     : maximum limit of total count
-*concentration* : this is a value where the percent obtained will be multiply
-*author*        : the author of the template 
+*title*         : title of the template counting  
+*max_count*     : maximum limit of total count  
+*concentration* : this is a value where the percent obtained will be multiply  
+*author*        : the author of the template   
 
 Elements is a table which contains each items to counts. Each of them can be defined by : 
 
-*name*          : name of elements
-*count*         : default count, by default it's zero
-*color*         : the color . Keep it nice :D
-*shortcut*      : the shortcut to perform a count. 
+*name*          : name of elements  
+*count*         : default count, by default it's zero  
+*color*         : the color . Keep it nice :D  
+*shortcut*      : the shortcut to perform a count.   
 
 #Use 
 #### Open a template
