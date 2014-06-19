@@ -71,26 +71,26 @@ Elements is a table which contains each items to counts. Each of them can be def
 *shortcut*      : the shortcut to perform a count. 
 
 #Use 
-## Open a template
+#### Open a template
 Just click on open 
 
-## Start counting 
+#### Start counting 
 Click on start to start counting and disable toolbar . You can also press Return to swich betwwen start and stop. 
 
-##Stop counting
+####Stop counting
 As above, click on stop or use the return shortcut. 
 
-##Set the max count value 
+####Set the max count value 
 The first number from the left is the maximum limit of the count. You can see in elements lists each percents. 
 
-##Set the concentration value
+####Set the concentration value
 The second number from the left is the concentration value. You can see in  elements lists each value. 
 
-#Shortcuts 
-You can use keyboard shortcut defined in the file and showed on your cellcounter. Press + **Key** to increase. Use *Maj + Key* to decrease.
+####Shortcuts 
+You can use keyboard shortcut defined in the file and showed on your cellcounter. Press + **Key** to increase. Use **Maj + Key** to decrease.
 You can also use your mouse. Click left to increase, click right to decrease.
 
- 
+
 
 
 
