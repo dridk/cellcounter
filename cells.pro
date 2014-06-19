@@ -16,7 +16,6 @@ include(deployment.pri)
 HEADERS += tools.h
 
 
-
 #install_it.path = $$OUT_PWD
 #install_it.files = sfx/*
 

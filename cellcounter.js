@@ -38,13 +38,18 @@ function loadJson(filename) {
 //========================================================================
 
 function increase(index){
-    console.debug("increase")
     var c = model.get(index).count
     if ( root.currentCount >= root.maxCount || root.currentCount <0){
         errorSound.play()
         return;
 
     }
+
+    if ( c >= root.maxCount){
+        errorSound.play()
+        return;
+    }
+
 
     model.set(index,{count:c + 1})
     currentCount += 1
@@ -61,11 +66,18 @@ function decrease(index){
     if ( root.currentCount > root.maxCount || root.currentCount <=0){
         errorSound.play()
         return;
-
     }
-    model.set(index,{count:c - 1})
-    currentCount -= 1
-    validSound.play()
+
+    if ( c <= 0 ){
+        errorSound.play()
+        return;
+    }
+
+
+
+model.set(index,{count:c - 1})
+currentCount -= 1
+validSound.play()
 
 }
 //========================================================================

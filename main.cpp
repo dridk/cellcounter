@@ -1,11 +1,13 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
+#include <QMessageBox>
 #include <QDir>
 #include "tools.h"
+#include <QQuickView>
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
 
