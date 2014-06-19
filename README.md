@@ -4,8 +4,11 @@ cellcounter
 Cute Software to manual count blood cells. This application can be use in biology laboratories, particulary in hematolgy cytology. However this application is designed to be use for any counting task. Just edit a json file and open it. 
 
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/dridk/cellcounter/master/screenshot.png" alt="Cellcounter"/>
+</p>
 
-![cellcounter](https://raw.githubusercontent.com/dridk/cellcounter/master/screenshot.png "Screenshot")
+
 
 #Installation 
 
