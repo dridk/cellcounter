@@ -3,7 +3,7 @@
 *.lo
 *.o
 *.obj
-
+*.pro.user
 # Compiled Dynamic libraries
 *.so
 *.dylib

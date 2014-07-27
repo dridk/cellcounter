@@ -20,5 +20,8 @@
         <file>icons/twitter.png</file>
         <file>icons/two123.png</file>
         <file>icons/up21.png</file>
+        <file>sfx/click.wav</file>
+        <file>sfx/deny.wav</file>
+        <file>standard.json</file>
     </qresource>
 </RCC>

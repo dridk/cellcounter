@@ -29,9 +29,7 @@ ApplicationWindow {
 
     Component.onCompleted: {
 
-        var a = "file://"+tools.applicationPath() + "/standard.json"
-        console.debug(a)
-
+        var a = Qt.resolvedUrl("standard.json")
         JS.loadJson(a)
 
 
@@ -45,7 +43,7 @@ ApplicationWindow {
         z:1
         focus: true
 
-        Keys.onEnterPressed: {
+        Keys.onReturnPressed : {
             started = !started
         }
 
@@ -292,8 +290,9 @@ ApplicationWindow {
             ListView {
                 enabled: root.started
                 clip: true
+                highlightFollowsCurrentItem: true
                 model : model
-                property string test : "saha"
+
 
                 delegate: ItemDelegate {
                     title: ListView.view.model.get(index).name
@@ -355,12 +354,12 @@ ApplicationWindow {
 
     SoundEffect {
            id: validSound
-           source: "file://"+tools.applicationPath() + "/sfx/click.wav"
+           source: "sfx/click.wav"
        }
 
     SoundEffect {
         id:errorSound
-               source: "file://"+tools.applicationPath() + "/sfx/deny.wav"
+               source: "sfx/deny.wav"
 
     }
 

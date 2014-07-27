@@ -13,13 +13,12 @@ QML_IMPORT_PATH =
 # Default rules for deployment.
 include(deployment.pri)
 
-HEADERS += \
-    tools.h
+HEADERS += tools.h
+
+OTHER_FILES += \
+    winicon.rc
 
 
-
-#install_it.path = $$OUT_PWD
-#install_it.files = sfx/*
-
-
-#INSTALLS += install_it
+win32 {
+RC_FILE = appicon.rc
+}
