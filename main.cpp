@@ -17,6 +17,9 @@ int main(int argc, char *argv[])
 
     view->engine()->rootContext()->setContextProperty("tools",&tools);
 
+    view->setMinimumWidth(500);
+    view->setMaximumWidth(500);
+    view->setHeight(600);
     view->show();
 
 

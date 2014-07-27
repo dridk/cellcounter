@@ -4,7 +4,8 @@ import QtMultimedia 5.0
 Rectangle {
     id:item
     width: parent.width
-    height: 50
+    height: 40
+
     property string mainColor
     property string color : mainColor
     property int count:0

@@ -7,7 +7,8 @@ Rectangle {
     id:root
 //    title: qsTr("Cell Counter")
     width: 500
-    height: 600
+    height: parent.height
+
     color : "white"
 
 
@@ -40,9 +41,15 @@ Rectangle {
         z:1
         focus: true
 
-        Keys.onReturnPressed : {
+        Keys.onSpacePressed : {
             started = !started
         }
+
+        Keys.onDeletePressed: {
+            if (!started)
+                JS.reset()
+        }
+
 
         Keys.onPressed: {
 
@@ -87,11 +94,10 @@ Rectangle {
 
         }
 
-
-
         Column {
             id:header
             width: parent.width
+            anchors.top:parent.top
             Rectangle {
                 width: parent.width
                 height: 50
@@ -140,13 +146,13 @@ Rectangle {
                         enabled: !root.started
                         onClicked: fileDialog.open()
                     }
-//                    IconButton{
-//                        source: "icons/down14.png"
-//                        anchors.verticalCenter: parent.verticalCenter
-//                        title: "save"
-//                        enabled: !root.started
-//                        onClicked: tools.saveJson(model)
-//                    }
+                    IconButton{
+                        source: "icons/down14.png"
+                        anchors.verticalCenter: parent.verticalCenter
+                        title: "save"
+                        enabled: !root.started
+                        onClicked: tools.saveJson(model)
+                    }
                     IconButton{
                         source: started ? "icons/square64.png" : "icons/play43.png"
                         anchors.verticalCenter: parent.verticalCenter
@@ -321,7 +327,7 @@ Rectangle {
 
 
     Rectangle {
-        anchors.bottom: parent.bottom
+        anchors.bottom: root.bottom
         width: parent.width
         height: 15
         color: "#2d3945"

@@ -6,7 +6,6 @@ Item {
     width: 50
     height: 50
     opacity: enabled ? (area.pressed ? 0.4 : 1) : 0.4
-
     signal clicked()
 
     Image {
