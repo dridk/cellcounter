@@ -20,7 +20,7 @@ function loadJson(filename) {
             model.clear()
 
             root.maxCount = data["max_count"]
-            root.title = data["title"]
+//            root.title = data["title"]
             root.concentration = data["concentration"]
             for ( var i=0; i<data["elements"].length; i++)
             {

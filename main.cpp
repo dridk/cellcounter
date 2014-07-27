@@ -7,16 +7,17 @@
 #include <QQuickView>
 int main(int argc, char *argv[])
 {
-     QGuiApplication app(argc, argv);
+    QGuiApplication app(argc, argv);
 
-    QQmlApplicationEngine engine;
+    QQuickView * view = new QQuickView;
 
     Tools tools;
 
-    engine.rootContext()->setContextProperty("tools",&tools);
+    view->setSource(QUrl(QStringLiteral("qrc:///cellcounter.qml")));
 
-    engine.load(QUrl(QStringLiteral("qrc:///cellcounter.qml")));
+    view->engine()->rootContext()->setContextProperty("tools",&tools);
 
+    view->show();
 
 
 

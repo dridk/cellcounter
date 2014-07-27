@@ -1,18 +1,15 @@
 import QtQuick 2.2
-import QtQuick.Controls 1.1
-import QtQuick.Window 2.0
-import QtQuick.Dialogs 1.1
 import QtMultimedia 5.0
+import QtQuick.Dialogs 1.1
 
 import "cellcounter.js" as JS
-ApplicationWindow {
+Rectangle {
     id:root
-    title: qsTr("Cell Counter")
+//    title: qsTr("Cell Counter")
     width: 500
     height: 600
     color : "white"
-    minimumWidth: 400
-    minimumHeight: 400
+
 
     visible: true
     FontLoader { id: latoFont; source: "fonts/Lato_Black.ttf" }
@@ -278,17 +275,17 @@ ApplicationWindow {
 
         }
 
-        ScrollView {
-            anchors.top : header.bottom
-            anchors.bottom: parent.bottom
-            width: parent.width
-            enabled: started
-            z:-1
-            opacity: enabled ? 1 : 0.4
+
 
 
             ListView {
-                enabled: root.started
+                anchors.top : header.bottom
+                anchors.bottom: parent.bottom
+                width: parent.width
+                enabled: started
+                z:-1
+                opacity: enabled ? 1 : 0.4
+
                 clip: true
                 highlightFollowsCurrentItem: true
                 model : model
@@ -317,7 +314,7 @@ ApplicationWindow {
                     }
                 }
             }
-        }
+
 
     }
 
