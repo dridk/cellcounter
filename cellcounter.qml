@@ -146,13 +146,13 @@ Rectangle {
                         enabled: !root.started
                         onClicked: fileDialog.open()
                     }
-                    IconButton{
-                        source: "icons/down14.png"
-                        anchors.verticalCenter: parent.verticalCenter
-                        title: "save"
-                        enabled: !root.started
-                        onClicked: tools.saveJson(model)
-                    }
+//                    IconButton{
+//                        source: "icons/down14.png"
+//                        anchors.verticalCenter: parent.verticalCenter
+//                        title: "save"
+//                        enabled: !root.started
+//                        onClicked: tools.saveJson(model)
+//                    }
                     IconButton{
                         source: started ? "icons/square64.png" : "icons/play43.png"
                         anchors.verticalCenter: parent.verticalCenter
@@ -266,6 +266,7 @@ Rectangle {
 
                     Text {
                         anchors.centerIn: parent
+                        anchors.verticalCenterOffset: -1
                         text:currentCount
                         font.family: latoFont.name
                         color: "white"

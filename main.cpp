@@ -8,6 +8,7 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    app.setApplicationVersion("v0.2-beta");
 
     QQuickView * view = new QQuickView;
 
