@@ -17,6 +17,8 @@ public:
 
     Q_INVOKABLE QString applicationPath();
 
+    Q_INVOKABLE QString version();
+
 
 };
 

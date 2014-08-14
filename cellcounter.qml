@@ -133,11 +133,12 @@ Rectangle {
 
             Rectangle {
                 width: parent.width
-                height: 50
+                height: 55
                 color: "#f0f0f0"
 
                 Row {
-                    anchors.fill: parent
+                    width: parent.width
+
                     spacing: 5
                     IconButton{
                         source: "icons/up21.png"
@@ -239,6 +240,7 @@ Rectangle {
                 height: 4
                 color: "#d3d7cf"
 
+
                 Rectangle {
                     id:progress
                     width: (parent.width - 26) * (currentCount/maxCount)
@@ -335,7 +337,7 @@ Rectangle {
 
         Text {
             anchors.centerIn: parent
-            text:"labsquare - licence MIT"
+            text:"labsquare - licence MIT - " + tools.version()
             color: "white"
             font.family: latoFont.name
         }

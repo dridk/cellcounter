@@ -31,3 +31,8 @@ QString Tools::applicationPath()
 
 }
 
+QString Tools::version()
+{
+    return qApp->applicationVersion();
+}
+
