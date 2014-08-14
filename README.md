@@ -5,7 +5,7 @@ Cute Software to manual count blood cells. This application can be use in biolog
 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dridk/cellcounter/master/screenshot.png" alt="Cellcounter"/>
+  <img src="http://dridk.github.io/cellcounter/images/capture.png" alt="Cellcounter"/>
 </p>
 
 
